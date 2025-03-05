@@ -14,9 +14,10 @@ const NavBar = () => {
             to='/'
             sx={{ flexGrow: 1, textDecoration: 'none' }}
           >
-            Contacts
+            Turtle Pizza Admin
           </Typography>
-          <Button color='inherit' variant="outlined"  component={NavLink} to='/new-contact'>Add New Contact</Button>
+          <Button color='inherit'  component={NavLink} to='/admin/dishes'>Dishes</Button>
+          <Button color='inherit'  component={NavLink} to='/admin/orders'>Orders</Button>
         </Toolbar>
       </AppBar>
     </Box>

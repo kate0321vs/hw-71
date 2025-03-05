@@ -1,8 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
+import { dishesReducer } from '../store/dishesSlice.ts';
 
 export const store = configureStore( {
     reducer: {
-
+      dishes: dishesReducer,
     },
 });
 
