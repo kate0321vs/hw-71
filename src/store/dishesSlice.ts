@@ -86,6 +86,7 @@ export const dishesSlice = createSlice({
 
 export const selectDishes = (state: RootState) => state.dishes.dishes;
 export const selectDish = (state: RootState) => state.dishes.dish;
+export const selectFetchDishesLoading = (state: RootState) => state.dishes.fetchLoading;
 export const selectFetchOneLoading = (state: RootState) => state.dishes.fetchOneLoading;
 export const selectUpdateLoading = (state: RootState) => state.dishes.updateLoading;
 export const selectCreateLoading = (state: RootState) => state.dishes.createLoading;

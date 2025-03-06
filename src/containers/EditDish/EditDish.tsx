@@ -24,7 +24,7 @@ const EditDish = () => {
     if (id) {
       await dispatch(updateDish({id, dish}));
       toast.success('Dish was edited Successfully!');
-      navigate('/');
+      navigate('/admin');
     }
   }
 

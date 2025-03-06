@@ -15,7 +15,7 @@ const navigate = useNavigate();
   const onSubmit = async (dish: ApiDish) => {
      await dispatch(createDish(dish));
      toast.success('Dish was added Successfully!');
-     navigate('/');
+     navigate('/admin');
   }
 
   return (

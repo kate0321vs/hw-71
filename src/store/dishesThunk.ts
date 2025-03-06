@@ -1,4 +1,4 @@
-import { ApiDish, Dish, DishesListApi } from '../types';
+import { ApiDish, CartDish, Dish, DishesListApi } from '../types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../axiosApi.ts';
 
@@ -13,7 +13,6 @@ export const fetchDishes = createAsyncThunk<Dish[], undefined>(
        return {...dishes[key], id: key};
      });
     }
-    console.log("dishes fetch", newDishes);
     return newDishes;
   }
   );
@@ -27,7 +26,6 @@ export const fetchOneDish = createAsyncThunk<ApiDish, string>(
     if(!dish) {
       throw new Error("Not Found!");
     }
-    console.log("dish", dish);
      return dish;
   }
 );
@@ -51,5 +49,16 @@ export const deleteDish = createAsyncThunk(
   async (id: string) => {
     await axiosApi.delete(`/dishes/${id}.json`);
   }
-)
+);
+
+export const submitOrder = createAsyncThunk(
+  'cart/submitOrder',
+  async (cart: CartDish[]) => {
+    const order: Record<string, number> = {};
+    cart.forEach((dish) => {
+       order[dish.dish.id] = dish.amount
+    });
+    await axiosApi.post('/orders.json', order);
+  }
+);
 
