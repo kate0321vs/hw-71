@@ -15,3 +15,8 @@ export interface DishesListApi {
     [id: string]: ApiDish;
 }
 
+export interface CartDish {
+  dish: Dish;
+  amount: number;
+}
+

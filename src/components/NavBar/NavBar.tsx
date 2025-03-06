@@ -1,8 +1,9 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 
-
 const NavBar = () => {
+  const location = useLocation();
+
   return (
     <Box sx={{mb: 5}}>
       <AppBar position="static">
@@ -11,13 +12,17 @@ const NavBar = () => {
             variant="h6"
             color='inherit'
             component={NavLink}
-            to='/'
+            to={location.pathname === '/' ? '/' : '/admin'}
             sx={{ flexGrow: 1, textDecoration: 'none' }}
           >
-            Turtle Pizza Admin
+            {location.pathname === '/'  ? 'Turtle Pizza' : 'Turtle Pizza Admin'}
           </Typography>
-          <Button color='inherit'  component={NavLink} to='/admin/dishes'>Dishes</Button>
-          <Button color='inherit'  component={NavLink} to='/admin/orders'>Orders</Button>
+
+          {location.pathname === '/' ? null :
+            <Box>
+            <Button color="inherit" component={NavLink} to="/admin/dishes">Dishes</Button>
+            <Button color='inherit'  component={NavLink} to="/admin/orders">Orders</Button>
+          </Box> }
         </Toolbar>
       </AppBar>
     </Box>

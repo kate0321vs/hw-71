@@ -23,7 +23,7 @@ const EditDish = () => {
   const onSubmit = async (dish: ApiDish) => {
     if (id) {
       await dispatch(updateDish({id, dish}));
-      toast.success('Contact was edited Successfully!')
+      toast.success('Dish was edited Successfully!');
       navigate('/');
     }
   }

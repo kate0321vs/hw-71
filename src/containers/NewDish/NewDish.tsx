@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hook.ts';
 import { createDish } from '../../store/dishesThunk.ts';
 import { ApiDish } from '../../types';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const NewDish = () => {
 const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ const navigate = useNavigate();
 
   const onSubmit = async (dish: ApiDish) => {
      await dispatch(createDish(dish));
+     toast.success('Dish was added Successfully!');
      navigate('/');
   }
 

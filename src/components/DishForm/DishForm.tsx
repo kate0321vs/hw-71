@@ -27,13 +27,24 @@ const DishForm: React.FC<Props> = ({isLoading, isEdit, onSubmitAction, dish}) =>
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
+
+    if (form.price < 0) {
+      alert("Please enter a correct price");
+      return;
+    } else if (form.title.trim().length === 0) {
+      alert("Please enter a correct title");
+      return;
+    }
     onSubmitAction({...form, price: Number(form.price)});
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement> ) => {
     const {name, value} = e.target;
     setForm({...form, [name]: value});
-  }
+  };
+
+
+
 
   return (
     <form onSubmit={onSubmit}>
@@ -59,7 +70,6 @@ const DishForm: React.FC<Props> = ({isLoading, isEdit, onSubmitAction, dish}) =>
           <TextField
             sx={{width: '100%', mb: 2}}
             label="Price"
-            type="number"
             name="price"
             variant="outlined"
             onChange={onChange}
@@ -78,7 +88,6 @@ const DishForm: React.FC<Props> = ({isLoading, isEdit, onSubmitAction, dish}) =>
             onChange={onChange}
             value={form.image}
             disabled={isLoading}
-            required
           />
         </Grid>
         <Grid xs={12}>
