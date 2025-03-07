@@ -5,6 +5,7 @@ import Dishes from './containers/Dishes/Dishes.tsx';
 import NewDish from './containers/NewDish/NewDish.tsx';
 import EditDish from './containers/EditDish/EditDish.tsx';
 import Menu from './containers/Menu/Menu.tsx';
+import Orders from './containers/Orders/Orders.tsx';
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
             <Route path='/' element={(<Menu/>)}/>
             <Route path="/admin" element={(<Dishes />)}/>
             <Route path="/admin/dishes" element={(<Dishes />)}/>
+            <Route path="/admin/orders" element={(<Orders />)}/>
             <Route path='/edit-dish/:id' element={<EditDish/>}/>
             <Route path="/new-dish" element={(<NewDish/>)}/>
             <Route path="*" element={(<h1>Not page found</h1>)}/>

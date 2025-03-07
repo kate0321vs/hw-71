@@ -27,7 +27,7 @@ export const dishesSlice = createSlice({
   name: "dishes",
   initialState,
   reducers: {},
-  extraReducers(builder) {
+  extraReducers: (builder)=> {
   builder.addCase(fetchDishes.pending, (state) => {
    state.fetchLoading = true;
   });

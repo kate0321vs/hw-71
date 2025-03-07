@@ -21,7 +21,7 @@ const DishForm: React.FC<Props> = ({isLoading, isEdit, onSubmitAction, dish}) =>
 
   useEffect(() => {
     if(dish) {
-      setForm(dish);
+      setForm({...dish, image: ''});
     }
   }, [dish]);
 
@@ -42,9 +42,6 @@ const DishForm: React.FC<Props> = ({isLoading, isEdit, onSubmitAction, dish}) =>
     const {name, value} = e.target;
     setForm({...form, [name]: value});
   };
-
-
-
 
   return (
     <form onSubmit={onSubmit}>

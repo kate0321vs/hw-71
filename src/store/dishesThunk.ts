@@ -1,4 +1,4 @@
-import { ApiDish, CartDish, Dish, DishesListApi } from '../types';
+import { ApiDish, ApiOrder, CartDish, Dish, DishesListApi, Order } from '../types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosApi from '../axiosApi.ts';
 
@@ -21,7 +21,6 @@ export const fetchOneDish = createAsyncThunk<ApiDish, string>(
   "dishes/fetchOne",
   async (id) => {
     const dishResponse = await axiosApi<ApiDish | null>(`/dishes/${id}.json`);
-    console.log(dishResponse.data);
     const dish = dishResponse.data;
     if(!dish) {
       throw new Error("Not Found!");
@@ -55,10 +54,33 @@ export const submitOrder = createAsyncThunk(
   'cart/submitOrder',
   async (cart: CartDish[]) => {
     const order: Record<string, number> = {};
-    cart.forEach((dish) => {
+    cart.map((dish) => {
        order[dish.dish.id] = dish.amount
     });
     await axiosApi.post('/orders.json', order);
   }
 );
 
+export const fetchOrders = createAsyncThunk<Order[], undefined>(
+  'orders/fetchOrders',
+  async () => {
+    const ordersResponse = await axiosApi<ApiOrder | null>('/orders.json')
+    const orders = ordersResponse.data
+    let newOrders: Order[] = [];
+    if(orders) {
+      newOrders = Object.keys(orders).map((key) => {
+        return {
+          id: key,
+          items: orders[key]} ;
+      });
+    }
+    return newOrders;
+  }
+);
+
+export const deleteOrder = createAsyncThunk(
+  'orders/deleteOrder',
+  async (id: string) => {
+    await axiosApi.delete(`/orders/${id}.json`)
+  }
+)

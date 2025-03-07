@@ -64,7 +64,7 @@ const Menu = () => {
               onAddDishToCart={() => addDishToCart(dish)}/>
           )) :
           <p style={{marginTop: 30}}>No dishes yet</p>}
-      <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 4}}>
+      <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', my: 4}}>
         <Typography variant="h5">
           Total Price: {totalPrice}
         </Typography>
